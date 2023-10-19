@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CelebritiesPage } from './celebrities.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { CelebritiesPageRoutingModule } from './celebrities-routing.module';
 
 @NgModule({
@@ -11,7 +10,6 @@ import { CelebritiesPageRoutingModule } from './celebrities-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     CelebritiesPageRoutingModule
   ],
   declarations: [CelebritiesPage]

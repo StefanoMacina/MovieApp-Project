@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FilmService } from '../services/film.service';
+import { films } from './interfaces/film.interfaces';
 
 @Component({
   selector: 'app-films',
@@ -7,6 +9,13 @@ import { Component } from '@angular/core';
 })
 export class FilmsPage {
 
-  constructor() {}
+  filmList: films [] = []
+
+  constructor(private readonly _filmList : FilmService ) {
+    this.filmList = this._filmList.getList();
+  }
+
+
+
 
 }
