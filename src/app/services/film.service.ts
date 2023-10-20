@@ -41,5 +41,12 @@ export class FilmService {
         return film
     }
 
+    update(formValues : films) : void {
+        const filmIndex = this.films.findIndex((film : films) => film.id === formValues.id)
+        if(filmIndex !== -1){
+            this.films[filmIndex] = formValues
+        }
+    }
+
     
 }

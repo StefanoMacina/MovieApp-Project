@@ -25,7 +25,7 @@ export class FilmDetails {
 
         // assegno a film ciò che estraggo con getById, l'ID del film
         this.film = this._filmService.getById(this.filmId);
-        console.log(this.film?.title );
+        
         
       }
     });

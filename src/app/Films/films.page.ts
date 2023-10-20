@@ -20,9 +20,12 @@ export class FilmsPage {
     this.filmList = this._filmList.getList();
     }
 
-  select(id : number){
+  onSelect(id : any){
     this._route.navigate(["details", id], {relativeTo:this.route})
   }
 
+  onEdit(id : any){
+    this._route.navigate(['edit-film', id], {relativeTo:this.route} )
+  }
 
 }
