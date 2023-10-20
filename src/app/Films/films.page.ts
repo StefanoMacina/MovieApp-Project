@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FilmService } from '../services/film.service';
 import { films } from './interfaces/film.interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-films',
@@ -11,11 +12,17 @@ export class FilmsPage {
 
   filmList: films [] = []
 
-  constructor(private readonly _filmList : FilmService ) {
+  constructor(
+              private readonly _filmList : FilmService,
+              private readonly _route: Router,
+              private route:ActivatedRoute
+              ){
     this.filmList = this._filmList.getList();
+    }
+
+  select(id : number){
+    this._route.navigate(["details", id], {relativeTo:this.route})
   }
-
-
 
 
 }

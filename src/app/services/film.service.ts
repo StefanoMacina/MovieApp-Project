@@ -8,7 +8,7 @@ export class FilmService {
     films : films [] = [
         {
             id : 1,
-            title: "the hangover II",
+            title: "The hangover II",
             year : 2011,
             genres : "commedia"
         },
@@ -20,20 +20,25 @@ export class FilmService {
         },
         {
             id : 3,
-            title: "the hangover II",
-            year : 2011,
-            genres : "commedia"
+            title: "Reptile",
+            year : 2023,
+            genres : "Drammatico"
         },
         {
             id : 4,
-            title: "the hangover II",
-            year : 2011,
-            genres : "commedia"
+            title: "Nowhere",
+            year : 2023,
+            genres : "Thriller"
         }
     ]
 
     getList():films[]{
         return this.films;
+    }
+
+    getById(id:number) : films | undefined{
+        const film : films | undefined = this.films.find(( film:films ) => film.id === id)
+        return film
     }
 
     

@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <button>
+      <ion-back-button defaultHref="/tabs/films"></ion-back-button>
+    </button>
+    <ion-title> Film details </ion-title>
+  </ion-toolbar> 
+</ion-header>
+<ion-content >
+
+  <ion-card *ngIf="film">
+    <ion-card-header>
+      <ion-card-title> {{film.title}}</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      text description for the card content
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
