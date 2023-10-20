@@ -32,7 +32,7 @@ export class EditFilm {
     private _setForm(){
         this.form = new FormGroup({
             id : new FormControl(this.film?.id),
-            title: new FormControl(this.film?.title, Validators.required),
+            title: new FormControl(this.film?.title,),
             year: new FormControl(this.film?.year)
         })
         
