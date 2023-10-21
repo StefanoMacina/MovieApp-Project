@@ -1,16 +1,21 @@
 
-<ion-card id="card">
-  <ion-list *ngFor="let film of list">
-    <ion-item-sliding>
-      <ion-item (click)="selectFilm(film.id)">
-        <ion-label>{{film.title}} <small>({{film.year}})</small></ion-label>
-      </ion-item>
-      
-      <ion-item-options>
-        <ion-item-option (click)="editFilm(film.id)">EDIT <ion-icon name="settings-outline"></ion-icon></ion-item-option>
-        <ion-item-option color="danger">DELETE <ion-icon name="close-circle-outline"></ion-icon></ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-</ion-card>
+<div id="card">
+
+    <ion-list *ngFor="let film of list">
+      <ion-card id="single-card">
+
+        <ion-item-sliding>
+          <ion-item (click)="selectFilm(film.id)">
+            <ion-label>{{film.title}} <small>({{film.year}})</small></ion-label>
+          </ion-item>
+          
+          <ion-item-options>
+            <ion-item-option (click)="editFilm(film.id)">EDIT <ion-icon name="settings-outline"></ion-icon></ion-item-option>
+            <ion-item-option color="danger">DELETE <ion-icon name="close-circle-outline"></ion-icon></ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-card>
+    </ion-list>
+  
+</div>
   
