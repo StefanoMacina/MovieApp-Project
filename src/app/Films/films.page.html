@@ -1,17 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Films 
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">Films</ion-title>
+      <ion-title>
+        Films 
+      </ion-title>
     </ion-toolbar>
   </ion-header>
- <film-list [list]="filmList" (film)="onSelect($event)" (select)="onEdit($event)"></film-list>
   
-</ion-content>
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Films</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <film-list [list]="filmList" (film)="onSelect($event)" (select)="onEdit($event)"></film-list>
+    
+  </ion-content>
+</div>
