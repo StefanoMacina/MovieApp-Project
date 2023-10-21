@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from 'src/app/services/film.service';
 import { films } from '../../interfaces/film.interfaces';
+import { FilmsPage } from '../../films.page';
 
 @Component({
   selector: 'Film-details',
@@ -9,6 +10,7 @@ import { films } from '../../interfaces/film.interfaces';
   styleUrls: ['./FilmDetails.scss'],
 })
 export class FilmDetails {
+ 
   filmId: number | undefined;
 
   // inizializzo la variabile da inserire in html per mostrare i dati 

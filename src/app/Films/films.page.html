@@ -1,8 +1,8 @@
-<div>
+
 
   <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title>
+      <ion-title id="toolbar-title">
         Films 
       </ion-title>
     </ion-toolbar>
@@ -17,4 +17,4 @@
     <film-list [list]="filmList" (film)="onSelect($event)" (select)="onEdit($event)"></film-list>
     
   </ion-content>
-</div>
+
