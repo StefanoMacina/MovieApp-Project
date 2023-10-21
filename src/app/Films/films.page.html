@@ -14,6 +14,7 @@
         <ion-title size="large">Films</ion-title>
       </ion-toolbar>
     </ion-header>
+    
     <film-list [list]="filmList" (film)="onSelect($event)" (select)="onEdit($event)"></film-list>
     
   </ion-content>

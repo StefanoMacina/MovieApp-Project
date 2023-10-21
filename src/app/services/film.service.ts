@@ -29,6 +29,78 @@ export class FilmService {
             title: "Nowhere",
             year : 2023,
             genres : "Thriller"
+        },
+        {
+            id : 1,
+            title: "The hangover II",
+            year : 2011,
+            genres : "commedia"
+        },
+        {
+            id : 2,
+            title: "Fairplay",
+            year : 2023,
+            genres : "Avventura"
+        },
+        {
+            id : 3,
+            title: "Reptile",
+            year : 2023,
+            genres : "Drammatico"
+        },
+        {
+            id : 4,
+            title: "Nowhere",
+            year : 2023,
+            genres : "Thriller"
+        },
+        {
+            id : 1,
+            title: "The hangover II",
+            year : 2011,
+            genres : "commedia"
+        },
+        {
+            id : 2,
+            title: "Fairplay",
+            year : 2023,
+            genres : "Avventura"
+        },
+        {
+            id : 3,
+            title: "Reptile",
+            year : 2023,
+            genres : "Drammatico"
+        },
+        {
+            id : 4,
+            title: "Nowhere",
+            year : 2023,
+            genres : "Thriller"
+        },
+        {
+            id : 1,
+            title: "The hangover II",
+            year : 2011,
+            genres : "commedia"
+        },
+        {
+            id : 2,
+            title: "Fairplay",
+            year : 2023,
+            genres : "Avventura"
+        },
+        {
+            id : 3,
+            title: "Reptile",
+            year : 2023,
+            genres : "Drammatico"
+        },
+        {
+            id : 4,
+            title: "Nowhere",
+            year : 2023,
+            genres : "Thriller"
         }
     ]
 
