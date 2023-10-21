@@ -20,6 +20,12 @@ export class FilmsPage {
     this.filmList = this._filmList.getList();
     }
 
+    // modificare la lista in questo modo creato un private _getList
+    /* ionViewWillEnter(){
+    this._filmList.getList();
+  } */
+
+
   onSelect(id : any){
     this._route.navigate(["details", id], {relativeTo:this.route})
   }

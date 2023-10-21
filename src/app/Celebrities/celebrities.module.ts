@@ -1,17 +1,22 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CelebritiesPage } from './celebrities.page';
 import { CelebritiesPageRoutingModule } from './celebrities-routing.module';
+import { CelebritiesList } from './components/celebritiesList/CelebritiesList';
+import { CelebrityDetails } from './components/celebrityDetails/CelebrityDetails';
+import { EditCelebrity } from './components/editCelebrity/EditCelebrity';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    CelebritiesPageRoutingModule
+    CelebritiesPageRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [CelebritiesPage]
+  declarations: [CelebritiesPage, CelebritiesList, CelebrityDetails, EditCelebrity]
 })
 export class CelebritiesPageModule {}

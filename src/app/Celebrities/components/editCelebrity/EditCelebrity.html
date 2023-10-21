@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+    <ion-header>
+        <ion-toolbar>
+            <ion-back-button slot="start"></ion-back-button>
+            <ion-title>Edit celebrity</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <form *ngIf="form" class="form" [formGroup]="form" (ngSubmit)="submitForm()">
+        <div>
+            <ion-label position="floating"> Celebrity name : </ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+        </div>
+        <div>
+            <ion-label position="floating"> Celebrity Birthdate : </ion-label>
+            <ion-input formControlName="birthDate" type="number"></ion-input>
+        </div>
+        <ion-button type="submit">SUBMIT</ion-button>
+    </form>
+</ion-content>
