@@ -12,6 +12,7 @@ import { addFilm } from './components/addMovie/addFIlm';
 
 
 
+
 @NgModule({
   imports: [
     IonicModule,
@@ -20,6 +21,7 @@ import { addFilm } from './components/addMovie/addFIlm';
     FilmsPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
   ],
   declarations: [FilmsPage, FilmList, FilmDetails, EditFilm,addFilm]
 })

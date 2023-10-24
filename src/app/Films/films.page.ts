@@ -16,10 +16,8 @@ export class FilmsPage {
     private readonly _route: Router,
     private route: ActivatedRoute
   ) {
-    // metto in ascolto la lista di films
-    this._filmService.flmObs$.subscribe((films: films[]) => {
 
-      // map su ogni elemento della lista ricevuta 
+    this._filmService.getList().subscribe((films : films[]) => {
       this.filmsList = films.map((values: films) => {
         return {
           id: values.id,
@@ -29,8 +27,6 @@ export class FilmsPage {
         };
       });
     });
-
-    this._filmService.getList();
   }
 
   onSelect(id: any) {
