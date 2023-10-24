@@ -12,6 +12,7 @@ export class CelebritiesList{
     @Input() list : celebrities [] = [];
     @Output() celebrity = new EventEmitter<string>();
     @Output() select = new EventEmitter<string>()
+    @Output() delete = new EventEmitter<string>();
 
 
     selectCelebrity(id : string){
@@ -20,5 +21,9 @@ export class CelebritiesList{
 
     editCelebrity(id:string){
         this.select.emit(id)
+    }
+
+    deleteCelebrity(id : string){
+        this.delete.emit(id)
     }
 }

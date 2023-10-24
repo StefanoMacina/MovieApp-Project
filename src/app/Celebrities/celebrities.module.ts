@@ -7,6 +7,7 @@ import { CelebritiesPageRoutingModule } from './celebrities-routing.module';
 import { CelebritiesList } from './components/celebritiesList/CelebritiesList';
 import { CelebrityDetails } from './components/celebrityDetails/CelebrityDetails';
 import { EditCelebrity } from './components/editCelebrity/EditCelebrity';
+import { addCelebrity } from './components/addCelebrity/addCelebrity';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { EditCelebrity } from './components/editCelebrity/EditCelebrity';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [CelebritiesPage, CelebritiesList, CelebrityDetails, EditCelebrity]
+  declarations: [CelebritiesPage, CelebritiesList, CelebrityDetails, EditCelebrity, addCelebrity]
 })
 export class CelebritiesPageModule {}

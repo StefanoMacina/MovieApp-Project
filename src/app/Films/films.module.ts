@@ -8,6 +8,7 @@ import { FilmsPageRoutingModule } from './films-routing.module';
 import { FilmList } from './components/FIlmList/FilmList';
 import { FilmDetails } from './components/FilmDetails/FilmDetails';
 import { EditFilm } from './components/EditFIlm/EditFilm';
+import { addFilm } from './components/addMovie/addFIlm';
 
 
 
@@ -18,8 +19,8 @@ import { EditFilm } from './components/EditFIlm/EditFilm';
     FormsModule,
     FilmsPageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [FilmsPage, FilmList, FilmDetails, EditFilm]
+  declarations: [FilmsPage, FilmList, FilmDetails, EditFilm,addFilm]
 })
 export class FilmsPageModule {}

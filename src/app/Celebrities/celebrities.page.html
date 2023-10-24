@@ -1,8 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title id="toolbar-title">
-      Celebrities
-    </ion-title>
+    <ion-title id="toolbar-title"> Celebrities </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addCelebrity()" ><ion-icon name="add"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,5 +13,10 @@
       <ion-title size="large">Celebrities</ion-title>
     </ion-toolbar>
   </ion-header>
-  <celebrities-list [list]="celebrityList" (celebrity)="onSelect($event)" (select)="onEdit($event)"></celebrities-list>
+  <celebrities-list
+    [list]="celebrityList"
+    (celebrity)="onSelect($event)"
+    (select)="onEdit($event)"
+    (delete)="onDelete($event)"
+  ></celebrities-list>
 </ion-content>

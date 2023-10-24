@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { from, Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class ProfilePage {
 
-  constructor() {}
+  
+  
+  constructor() {
+     
+  
+
+  }
+  
 
 }

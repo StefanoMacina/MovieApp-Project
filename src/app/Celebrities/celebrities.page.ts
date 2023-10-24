@@ -14,11 +14,21 @@ export class CelebritiesPage {
 
 
   constructor(
-              private readonly _celebrityList : CelebrityService,
+              private readonly _celebrityService : CelebrityService,
               private readonly _route : Router,
               private route : ActivatedRoute
   ) {
-    this.celebrityList = this._celebrityList.getList()
+    this._celebrityService.celebObs$.subscribe((celebrities : celebrities[]) => {
+      this.celebrityList = celebrities.map((values : celebrities) => {
+        return {
+          id : values.id,
+          primary_name : values.primary_name,
+          birthDate : values.birthDate,
+          deathYear : values.death_year,
+        }
+      })
+    });
+    this._celebrityService.getList()
   }
 
   onSelect(id : any){
@@ -29,5 +39,12 @@ export class CelebritiesPage {
     this._route.navigate(['edit-celebrity', id], {relativeTo:this.route} )
   }
 
+  onDelete(id: string){
+    this._celebrityService.deleteById(id)
+  }
+  
+  addCelebrity(){
+    this._route.navigate(['add-celebrity'], {relativeTo:this.route} )
+  }
 
 }

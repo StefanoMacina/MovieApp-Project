@@ -19,30 +19,34 @@ export class EditCelebrity{
     constructor(
         private _route : ActivatedRoute,
         private readonly _celebrityService : CelebrityService,
-         private readonly _location : Location 
+        private readonly _location : Location 
     ) {
         this._route.params.subscribe(params => {
             this.celebrityId = params['id'];
             this.celebrity = this._celebrityService.getById(this.celebrityId);
             this._setForm();
         });
+        
     }
 
     private _setForm(){
         this.form = new FormGroup({
             id : new FormControl(this.celebrity?.id),
-            name: new FormControl(this.celebrity?.primary_name,),
-            birthDate: new FormControl(this.celebrity?.birthDate)
+            primary_name: new FormControl(this.celebrity?.primary_name,),
+            birthDate: new FormControl(this.celebrity?.birthDate),
+            deathyear : new FormControl(this.celebrity?.death_year)
         })
-        
+        this.form.valueChanges.subscribe(x => {
+            console.log(x.name);
+        })  
     }
 
 
     submitForm(){
         console.log(this.form?.value);
-        this._location.back()
-        
+        if(this.form?.valid){
+            this._celebrityService.update(this.form?.value)
+            this._location.back()
+        }
     }
-
-
 }

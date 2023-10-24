@@ -12,6 +12,8 @@ export class FilmList{
     @Input() list : films [] = [];
     @Output() film = new EventEmitter<number>();
     @Output() select = new EventEmitter<number>();
+    @Output() delete = new EventEmitter<number>();
+   
 
     constructor(private readonly _filmList : FilmService){
         
@@ -25,6 +27,10 @@ export class FilmList{
 
     editFilm(id:any){
         this.select.emit(id)
+    }
+
+    deleteFilm(id : number){
+        this.delete.emit(id)
     }
     
     

@@ -14,19 +14,23 @@ export class EditFilm {
     filmId: number | undefined;
     film: films | undefined; 
     form : FormGroup | undefined;
+   
 
     constructor(
+        
         private route: ActivatedRoute,
         private readonly _filmService: FilmService,
-         private readonly _location:Location
+        private readonly _location:Location
+        
     ) {
         this.route.params.subscribe(params => {
             this.filmId = +params['id'];
             this.film = this._filmService.getById(this.filmId);
             this._setForm();
         });
-
     }
+
+    
 
     // impostare campi del form da creare in html
     private _setForm(){
@@ -35,21 +39,26 @@ export class EditFilm {
             title: new FormControl(this.film?.title,),
             year: new FormControl(this.film?.year)
         })
+        this.form.valueChanges.subscribe(x => {
+            console.log(x.title);
+            
+        })
         
     }
 
     // funzione chiamata al submit del form sul button type=submit
     submitForm(){
-        console.log(this.form?.value);
+
         // controllo se il form è valido
         if(this.form?.valid) {
-            //chiamo update per sostiuire un oggetto
+            //chiamo update e gli passo i dati del form
              this._filmService.update(this.form?.value);
              this._location.back()
 
             }
         }
-        
+
+
     }
 
 

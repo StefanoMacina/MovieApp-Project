@@ -5,6 +5,12 @@
       <ion-title id="toolbar-title">
         Films 
       </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="onAdd()">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      
     </ion-toolbar>
   </ion-header>
   
@@ -15,7 +21,7 @@
       </ion-toolbar>
     </ion-header>
     
-    <film-list [list]="filmList" (film)="onSelect($event)" (select)="onEdit($event)"></film-list>
+    <film-list [list]="filmsList" (film)="onSelect($event)" (select)="onEdit($event)" (delete)="onDelete($event)"></film-list>
     
   </ion-content>
 

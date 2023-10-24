@@ -6,32 +6,47 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-films',
   templateUrl: 'films.page.html',
-  styleUrls: ['films.page.scss']
+  styleUrls: ['films.page.scss'],
 })
 export class FilmsPage {
-
-  filmList: films [] = []
+  filmsList: films[] = [];
 
   constructor(
-              private readonly _filmList : FilmService,
-              private readonly _route: Router,
-              private route:ActivatedRoute
-              ){
-    this.filmList = this._filmList.getList();
-    }
+    private readonly _filmService: FilmService,
+    private readonly _route: Router,
+    private route: ActivatedRoute
+  ) {
+    // metto in ascolto la lista di films
+    this._filmService.flmObs$.subscribe((films: films[]) => {
 
-    // modificare la lista in questo modo creato un private _getList
-    /* ionViewWillEnter(){
-    this._filmList.getList();
-  } */
+      // map su ogni elemento della lista ricevuta 
+      this.filmsList = films.map((values: films) => {
+        return {
+          id: values.id,
+          title: values.title,
+          year: values.year,
+          genres: values.genres,
+        };
+      });
+    });
 
-
-  onSelect(id : any){
-    this._route.navigate(["details", id], {relativeTo:this.route})
+    this._filmService.getList();
   }
 
-  onEdit(id : any){
-    this._route.navigate(['edit-film', id], {relativeTo:this.route} )
+  onSelect(id: any) {
+    this._route.navigate(['details', id], { relativeTo: this.route });
   }
 
+  onEdit(id: any) {
+    this._route.navigate(['edit-film', id], { relativeTo: this.route });
+  }
+
+  onDelete(id: number) {
+    this._filmService.deleteById(id);
+    
+  }
+
+  onAdd(){
+    this._route.navigate(['add-film'], {relativeTo:this.route})
+  }
 }
