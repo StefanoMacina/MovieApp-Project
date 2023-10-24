@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FilmsPage } from './films.page';
 import { FilmDetails } from './components/FilmDetails/FilmDetails';
 import { EditFilm } from './components/EditFIlm/EditFilm';
-import { addFilm } from './components/addMovie/addFIlm';
+import { addFilm } from './components/addFilm/addFilm';
+
+
 
 const routes: Routes = [
   {

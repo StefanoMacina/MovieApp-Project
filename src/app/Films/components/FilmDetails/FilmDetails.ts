@@ -11,7 +11,7 @@ import { FilmsPage } from '../../films.page';
 })
 export class FilmDetails {
  
-  filmId: number | undefined;
+  filmId!: string;
 
   // inizializzo la variabile da inserire in html per mostrare i dati 
   film : films | undefined;
@@ -22,11 +22,11 @@ export class FilmDetails {
   
   ) {
     this._route.params.subscribe((params) => {
-      this.filmId = +params['id'];
+      this.filmId = params['id'];
       if (this.filmId) {
 
         // assegno a film ciò che estraggo con getById, l'ID del film
-        this.film = this._filmService.getById(this.filmId);
+        this._filmService.getById(this.filmId).subscribe((getFilm : films) => this.film = getFilm);
         
         
       }

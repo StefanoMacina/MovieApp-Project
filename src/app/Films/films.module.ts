@@ -8,7 +8,8 @@ import { FilmsPageRoutingModule } from './films-routing.module';
 import { FilmList } from './components/FIlmList/FilmList';
 import { FilmDetails } from './components/FilmDetails/FilmDetails';
 import { EditFilm } from './components/EditFIlm/EditFilm';
-import { addFilm } from './components/addMovie/addFIlm';
+import { addFilm } from './components/addFilm/addFilm';
+
 
 
 

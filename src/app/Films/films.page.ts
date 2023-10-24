@@ -9,7 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['films.page.scss'],
 })
 export class FilmsPage {
+
+  
+  
   filmsList: films[] = [];
+ 
 
   constructor(
     private readonly _filmService: FilmService,
@@ -29,15 +33,15 @@ export class FilmsPage {
     });
   }
 
-  onSelect(id: any) {
+  onSelect(id: string) {
     this._route.navigate(['details', id], { relativeTo: this.route });
   }
 
-  onEdit(id: any) {
+  onEdit(id: string) {
     this._route.navigate(['edit-film', id], { relativeTo: this.route });
   }
 
-  onDelete(id: number) {
+  onDelete(id: string) {
     this._filmService.deleteById(id);
     
   }

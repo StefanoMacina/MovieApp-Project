@@ -1,27 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title id="toolbar-title"> Films </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onAdd()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-
-  <ion-header [translucent]="true">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title id="toolbar-title">
-        Films 
-      </ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="onAdd()">
-          <ion-icon name="add"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      
+      <ion-title size="large">Films</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Films</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    
-    <film-list [list]="filmsList" (film)="onSelect($event)" (select)="onEdit($event)" (delete)="onDelete($event)"></film-list>
-    
-  </ion-content>
 
+  <film-list *ngIf="filmsList"
+    [list]="filmsList"
+    (film)="onSelect($event)"
+    (select)="onEdit($event)"
+    (delete)="onDelete($event)"
+  ></film-list>
+</ion-content>
+
+<ion-content *ngIf="!filmsList" >
+  
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  
+</ion-content>

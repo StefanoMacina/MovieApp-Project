@@ -37,14 +37,14 @@ export class FilmService {
   }
 
 
+  getById(id: string): Observable<films> {
 
+    return this._http.get<films>(`${this._baseUrl}/movies/${id}`)
 
-
-  getById(id: number): films | undefined {
-    const film: films | undefined = this.films.find(
+    /* const film: films | undefined = this.films.find(
       (film: films) => film.id === id
     );
-    return film;
+    return film; */
   }
 
 
@@ -67,8 +67,8 @@ export class FilmService {
 
 
 
-  deleteById(id: number) {
-    const index = this.films.findIndex((film) => film.id === id);
+  deleteById(id: string) {
+    const index = this.films.findIndex((film) => film.id == id);
     if (index !== -1) {
       this.films.splice(index, 1);
       this._film$.next(this.films);
@@ -81,7 +81,7 @@ export class FilmService {
 
 
   addFilm(film: films) {
-    film.id = (this.films.length + 1);
+    film.id = (this.films.length + 1).toString();
     this.films.push(film);
     this._film$.next(this.films);
   }

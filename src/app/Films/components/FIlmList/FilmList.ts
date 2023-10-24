@@ -10,26 +10,26 @@ import { FilmService } from "src/app/services/film.service";
 export class FilmList{
 
     @Input() list : films [] = [];
-    @Output() film = new EventEmitter<number>();
-    @Output() select = new EventEmitter<number>();
-    @Output() delete = new EventEmitter<number>();
+    @Output() film = new EventEmitter<string>();
+    @Output() select = new EventEmitter<string>();
+    @Output() delete = new EventEmitter<string>();
    
 
     constructor(private readonly _filmList : FilmService){
         
     }
     
-    selectFilm(id:number){
+    selectFilm(id:string){
         console.log(id);
         
         this.film.emit(id)
     }
 
-    editFilm(id:any){
+    editFilm(id:string){
         this.select.emit(id)
     }
 
-    deleteFilm(id : number){
+    deleteFilm(id : string){
         this.delete.emit(id)
     }
     

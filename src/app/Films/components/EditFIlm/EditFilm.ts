@@ -11,7 +11,7 @@ import { Location } from "@angular/common";
     styleUrls : ['./EditFilm.scss']
 })
 export class EditFilm {
-    filmId: number | undefined;
+    filmId!: string;
     film: films | undefined; 
     form : FormGroup | undefined;
    
@@ -24,9 +24,11 @@ export class EditFilm {
         
     ) {
         this.route.params.subscribe(params => {
-            this.filmId = +params['id'];
-            this.film = this._filmService.getById(this.filmId);
-            this._setForm();
+            this.filmId = params['id'];
+            this._filmService.getById(this.filmId).subscribe((getFilm : films) => {
+                this.film = getFilm;
+                this._setForm();
+            });
         });
     }
 
