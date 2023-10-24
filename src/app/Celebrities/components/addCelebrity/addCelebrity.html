@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Add Celebrity</ion-title>
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    
+    <form *ngIf="form" class="form" [formGroup]="form" (ngSubmit)="submitForm()" id="card">
+        <div>
+            <ion-label position="floating"> Celebrity name : </ion-label>
+            <ion-input formControlName="primary_name" type="text"></ion-input>
+        </div>
+        <div>
+            <ion-label position="floating"> birthdate : </ion-label>
+            <ion-input formControlName="birthDate" type="number"></ion-input>
+        </div>
+        <div>
+            <ion-label position="floating"> death date : </ion-label>
+            <ion-input formControlName="deathyear" type="number"></ion-input>
+        </div>
+        <ion-button type="submit">ADD NEW CELEBRITY</ion-button>
+    </form>
+</ion-content>

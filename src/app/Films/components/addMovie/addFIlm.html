@@ -1,0 +1,22 @@
+<ion-content [fullscreen]="true">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Add Film</ion-title>
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    
+    <form *ngIf="form" class="form" [formGroup]="form" (ngSubmit)="submitForm()" id="card">
+        <div>
+            <ion-label position="floating"> Film title : </ion-label>
+            <ion-input formControlName="title" type="text"></ion-input>
+        </div>
+        <div>
+            <ion-label position="floating"> Film year : </ion-label>
+            <ion-input formControlName="year" type="number"></ion-input>
+        </div>
+        <ion-button type="submit">ADD NEW FILM</ion-button>
+    </form>
+</ion-content>

@@ -1,0 +1,16 @@
+#card{
+    height: 70%;
+    padding: 0.5rem;
+    margin: 2rem;
+    background-color: rgba(211, 210, 205, 0.1);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1.5rem;
+ }
+
+ ion-back-button {
+    display: block;
+ }
