@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FilmService } from "src/app/services/film.service";
-import { films } from "../../interfaces/film.interfaces";
+import { Film } from "../../interfaces/film.interfaces";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Location } from "@angular/common";
 
@@ -12,7 +12,7 @@ import { Location } from "@angular/common";
 })
 export class EditFilm {
     filmId!: string;
-    film: films | undefined; 
+    film: Film | undefined; 
     form : FormGroup | undefined;
    
 
@@ -25,7 +25,7 @@ export class EditFilm {
     ) {
         this.route.params.subscribe(params => {
             this.filmId = params['id'];
-            this._filmService.getById(this.filmId).subscribe((getFilm : films) => {
+            this._filmService.getById(this.filmId).subscribe((getFilm : Film) => {
                 this.film = getFilm;
                 this._setForm();
             });
@@ -54,7 +54,7 @@ export class EditFilm {
         
         if(this.form?.valid) {
             
-             this._filmService.update(this.form?.value).subscribe((putFilm : films) => {
+             this._filmService.update(this.form?.value).subscribe(() => {
                 
                 this._location.back()
              });

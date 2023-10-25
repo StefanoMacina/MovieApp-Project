@@ -1,6 +1,6 @@
 
 // !! cambiare nome in Film !!
-export interface films {
+export interface Film {
     id : string,
     title : string,
     year : number

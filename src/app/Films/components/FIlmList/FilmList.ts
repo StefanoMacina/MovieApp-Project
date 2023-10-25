@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { films } from "../../interfaces/film.interfaces";
+import { Film } from "../../interfaces/film.interfaces";
 import { FilmService } from "src/app/services/film.service";
 
 @Component({
@@ -10,7 +10,7 @@ import { FilmService } from "src/app/services/film.service";
 export class FilmList{
 
    
-    @Input() list : films [] = [];
+    @Input() list : Film [] = [];
     @Output() film = new EventEmitter<string>();
     @Output() select = new EventEmitter<string>();
     @Output() delete = new EventEmitter<string>();

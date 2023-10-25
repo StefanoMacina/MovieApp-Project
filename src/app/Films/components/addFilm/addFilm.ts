@@ -2,7 +2,7 @@ import { Location } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { FilmService } from "src/app/services/film.service";
-import { films } from "../../interfaces/film.interfaces";
+import { Film } from "../../interfaces/film.interfaces";
 
 @Component({
     selector : 'add-film',
@@ -11,7 +11,7 @@ import { films } from "../../interfaces/film.interfaces";
 })
 export class addFilm{
     form : FormGroup | undefined;
-    film: films | undefined; 
+    film: Film | undefined; 
 
     constructor(
         private readonly _filmService: FilmService,

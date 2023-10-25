@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from 'src/app/services/film.service';
-import { films } from '../../interfaces/film.interfaces';
+import { Film } from '../../interfaces/film.interfaces';
 import { FilmsPage } from '../../films.page';
 import { ThisReceiver } from '@angular/compiler';
 
@@ -14,7 +14,7 @@ export class FilmDetails {
   filmId!: string;
 
   // inizializzo la variabile da inserire in html per mostrare i dati
-  film: films | undefined;
+  film: Film | undefined;
 
   constructor(
     private _route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class FilmDetails {
       this.filmId = params['id'];
       if (this.filmId) {
         // assegno a film ciò che estraggo con getById, e subscribe in modo ASINCRONO
-        this._filmService.getById(this.filmId).subscribe((getFilm: films) => {
+        this._filmService.getById(this.filmId).subscribe((getFilm: Film) => {
           console.log(getFilm);
           this.film = getFilm;
         });

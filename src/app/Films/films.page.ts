@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FilmService } from '../services/film.service';
-import { films } from './interfaces/film.interfaces';
+import { Film } from './interfaces/film.interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['films.page.scss'],
 })
 export class FilmsPage {
-  filmsList: films[] = [];
+  filmsList: Film[] = [];
 
   constructor(
     private readonly _filmService: FilmService,
@@ -18,8 +18,8 @@ export class FilmsPage {
   ) {}
 
   private _getList(){
-    this._filmService.getList().subscribe((films: films[]) => {
-      this.filmsList = films.map((values: films) => {
+    this._filmService.getList().subscribe((films: Film[]) => {
+      this.filmsList = films.map((values: Film) => {
         return {
           id: values.id,
           title: values.title,
