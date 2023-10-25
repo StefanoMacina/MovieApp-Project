@@ -17,8 +17,7 @@ export class CelebritiesPage {
               private readonly _celebrityService : CelebrityService,
               private readonly _route : Router,
               private route : ActivatedRoute
-  ) {
-  }
+  ) {}
   
   private _getList(){
     this._celebrityService.getList().subscribe((celebrities : Celebrities[]) => {
@@ -33,7 +32,6 @@ export class CelebritiesPage {
         }
       })
     });
-    
   }
 
   ionViewWillEnter(){
@@ -50,7 +48,9 @@ export class CelebritiesPage {
   }
 
   onDelete(id: string){
-    this._celebrityService.deleteById(id)
+    this._celebrityService.deleteById(id).subscribe(()=> {
+      this._getList()
+    })
   }
   
   addCelebrity(){

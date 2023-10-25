@@ -23,7 +23,7 @@ export class addCelebrity {
   private _setForm() {
     this.form = new FormGroup({
       id: new FormControl(this.celebrity?.id),
-      primary_name: new FormControl(this.celebrity?.name),
+      name: new FormControl(this.celebrity?.name),
       birthDate: new FormControl(this.celebrity?.birthDate),
       deathyear: new FormControl(this.celebrity?.death_year),
     });

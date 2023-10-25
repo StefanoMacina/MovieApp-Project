@@ -26,41 +26,26 @@ export class CelebrityService {
 
     return this._http.get<Celebrities[]>(`${this._baseUrl}/celebrities?order_by=id&page=0&size=25`)
       .pipe(
-        map((dataObj : any) => {
-          return dataObj.celebrities
+        map((data : any) => {
+          return data.celebrities
         })
       )
-
-
-    /* this._celebrities$.next(this.celebrities); */
-  }
-
-  getById(id: any): Celebrities | undefined {
-    const celebrity: Celebrities | undefined = this.celebrities.find(
-      (celebrity: Celebrities) => celebrity.id === id
-    );
-    return celebrity;
-  }
-
-  // aggiornare i valori del form in ingresso
-  update(formValues: Celebrities): void {
-    const celebrityIndex = this.celebrities.findIndex(
-      (celebrity: Celebrities) => celebrity.id === formValues.id
-    );
-    if (celebrityIndex !== -1) {
-      this.celebrities[celebrityIndex] = formValues;
-    }
-    this._celebrities$.next(this.celebrities);
   }
 
 
-  deleteById(id : string){
-    const index = this.celebrities.findIndex((celeb) => celeb.id === id)
-    if(index !== -1){
-        this.celebrities.splice(index,1)
-        this._celebrities$.next(this.celebrities)
-    }
+  getById(id: string): Observable<Celebrities> {
+    return this._http.get<Celebrities>(`${this._baseUrl}/celebrities/${id}`)
   }
+
+
+  update(formValues: Celebrities): Observable<Celebrities> {
+    return this._http.put<Celebrities>(`${this._baseUrl}/celebrities/${formValues.id}`, formValues)
+  }
+
+
+  deleteById(id : string) : Observable<Celebrities>{
+    return this._http.delete<Celebrities>(`${this._baseUrl}/celebrities/${id}`)
+  } 
 
   addCelebrity(celebrity : Celebrities){
     celebrity.id = (this.celebrities.length + 1).toString()

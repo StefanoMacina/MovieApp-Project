@@ -17,7 +17,7 @@ export class FilmsPage {
     private route: ActivatedRoute
   ) {}
 
-  private _getList(){
+  private _getList() {
     this._filmService.getList().subscribe((films: Film[]) => {
       this.filmsList = films.map((values: Film) => {
         return {
@@ -35,10 +35,8 @@ export class FilmsPage {
   }
 
   ionViewWillEnter() {
-   this._getList()
+    this._getList();
   }
-
-  
 
   onSelect(id: string) {
     this._route.navigate(['details', id], { relativeTo: this.route });
@@ -50,7 +48,7 @@ export class FilmsPage {
 
   onDelete(id: string) {
     this._filmService.deleteById(id).subscribe(() => {
-      this._getList()
+      this._getList();
     });
   }
 

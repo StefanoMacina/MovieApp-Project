@@ -9,17 +9,24 @@ import { CelebrityService } from "src/app/services/celebrity.service";
     styleUrls : ['./CelebrityDetails.scss']
 })
 export class CelebrityDetails {
-    CelebrityId : string | undefined
+    CelebrityId! : string 
     celebrity : Celebrities | undefined
 
     constructor(
         private _route : ActivatedRoute,
         private _celebrityService : CelebrityService
     ) {
+        // prendo id dalla route appena inizializzo il componente
         this._route.params.subscribe((params) => {
             this.CelebrityId = params['id'];
             if(this.CelebrityId) {
-                this.celebrity = this._celebrityService.getById(this.CelebrityId)
+                // assegno il valore in base all'id
+               this._celebrityService.getById(this.CelebrityId).subscribe((getCelebrity : Celebrities) => {
+                this.celebrity = getCelebrity
+                console.log(getCelebrity);
+                
+                
+               })
             }
         })
     }

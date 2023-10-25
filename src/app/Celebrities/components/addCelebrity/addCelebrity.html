@@ -10,8 +10,12 @@
     
     <form *ngIf="form" class="form" [formGroup]="form" (ngSubmit)="submitForm()" id="card">
         <div>
+            <ion-label position="floating"> Id : </ion-label>
+            <ion-input formControlName="id" type="string"></ion-input>
+        </div>
+        <div>
             <ion-label position="floating"> Celebrity name : </ion-label>
-            <ion-input formControlName="primary_name" type="text"></ion-input>
+            <ion-input formControlName="name" type="text"></ion-input>
         </div>
         <div>
             <ion-label position="floating"> birthdate : </ion-label>

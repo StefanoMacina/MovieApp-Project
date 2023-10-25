@@ -25,7 +25,6 @@ export class FilmDetails {
       if (this.filmId) {
         // assegno a film ciò che estraggo con getById, e subscribe in modo ASINCRONO
         this._filmService.getById(this.filmId).subscribe((getFilm: Film) => {
-          console.log(getFilm);
           this.film = getFilm;
         });
       }
