@@ -25,7 +25,9 @@ export class addFilm{
         this.form = new FormGroup({
             id : new FormControl(this.film?.id),
             title: new FormControl(this.film?.title,),
-            year: new FormControl(this.film?.year)
+            year: new FormControl(this.film?.year),
+            genres :  new FormControl(this.film?.genres),
+            rating : new FormControl(this.film?.rating)
         })
         
     }
@@ -33,11 +35,12 @@ export class addFilm{
 
     submitForm(){
         console.log(this.form?.value);
-        // controllo se il form è valido
         if(this.form?.valid) {
-            //chiamo update per sostiuire un oggetto
-             this._filmService.addFilm(this.form?.value);
-             this._location.back()
+            
+             this._filmService.addFilm(this.form?.value).subscribe(() => {
+
+                 this._location.back()
+             });
 
             }
         }

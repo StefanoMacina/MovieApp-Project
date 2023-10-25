@@ -10,12 +10,24 @@
     
     <form *ngIf="form" class="form" [formGroup]="form" (ngSubmit)="submitForm()" id="card">
         <div>
+            <ion-label position="floating"> Film id : </ion-label>
+            <ion-input formControlName="id" type="text"></ion-input>
+        </div>
+        <div>
             <ion-label position="floating"> Film title : </ion-label>
             <ion-input formControlName="title" type="text"></ion-input>
         </div>
         <div>
             <ion-label position="floating"> Film year : </ion-label>
             <ion-input formControlName="year" type="number"></ion-input>
+        </div>
+        <div>
+            <ion-label position="floating"> Genres : </ion-label>
+            <ion-input formControlName="genres" type="text"></ion-input>
+        </div>
+        <div>
+            <ion-label position="floating"> Rating : </ion-label>
+            <ion-input formControlName="rating" type="number"></ion-input>
         </div>
         <ion-button type="submit">ADD NEW FILM</ion-button>
     </form>

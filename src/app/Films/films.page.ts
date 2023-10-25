@@ -9,29 +9,36 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['films.page.scss'],
 })
 export class FilmsPage {
-
-  
-  
   filmsList: films[] = [];
- 
 
   constructor(
     private readonly _filmService: FilmService,
     private readonly _route: Router,
     private route: ActivatedRoute
-  ) {
+  ) {}
 
-    this._filmService.getList().subscribe((films : films[]) => {
+  private _getList(){
+    this._filmService.getList().subscribe((films: films[]) => {
       this.filmsList = films.map((values: films) => {
         return {
           id: values.id,
           title: values.title,
           year: values.year,
           genres: values.genres,
+          rating: values.rating,
+          country: values.country,
+          cast: values.cast,
+          runningTime: values.runningTime,
         };
       });
     });
   }
+
+  ionViewWillEnter() {
+   this._getList()
+  }
+
+  
 
   onSelect(id: string) {
     this._route.navigate(['details', id], { relativeTo: this.route });
@@ -42,11 +49,12 @@ export class FilmsPage {
   }
 
   onDelete(id: string) {
-    this._filmService.deleteById(id);
-    
+    this._filmService.deleteById(id).subscribe(() => {
+      this._getList()
+    });
   }
 
-  onAdd(){
-    this._route.navigate(['add-film'], {relativeTo:this.route})
+  onAdd() {
+    this._route.navigate(['add-film'], { relativeTo: this.route });
   }
 }

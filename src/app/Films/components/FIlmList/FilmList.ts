@@ -9,6 +9,7 @@ import { FilmService } from "src/app/services/film.service";
 })
 export class FilmList{
 
+   
     @Input() list : films [] = [];
     @Output() film = new EventEmitter<string>();
     @Output() select = new EventEmitter<string>();
@@ -16,6 +17,7 @@ export class FilmList{
    
 
     constructor(private readonly _filmList : FilmService){
+              
         
     }
     

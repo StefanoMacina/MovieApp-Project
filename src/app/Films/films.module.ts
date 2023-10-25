@@ -9,6 +9,7 @@ import { FilmList } from './components/FIlmList/FilmList';
 import { FilmDetails } from './components/FilmDetails/FilmDetails';
 import { EditFilm } from './components/EditFIlm/EditFilm';
 import { addFilm } from './components/addFilm/addFilm';
+import { HeaderComponent } from '../shared/header/header';
 
 
 
@@ -24,6 +25,6 @@ import { addFilm } from './components/addFilm/addFilm';
     ReactiveFormsModule,
     
   ],
-  declarations: [FilmsPage, FilmList, FilmDetails, EditFilm,addFilm]
+  declarations: [FilmsPage, FilmList, FilmDetails, EditFilm,addFilm, HeaderComponent]
 })
 export class FilmsPageModule {}

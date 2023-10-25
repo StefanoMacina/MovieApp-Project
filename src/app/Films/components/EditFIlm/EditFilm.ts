@@ -37,9 +37,11 @@ export class EditFilm {
     // impostare campi del form da creare in html
     private _setForm(){
         this.form = new FormGroup({
-            id : new FormControl(this.film?.id),
+            id : new FormControl(this.film?.id,),
             title: new FormControl(this.film?.title,),
-            year: new FormControl(this.film?.year)
+            year: new FormControl(this.film?.year),
+            genres :  new FormControl(this.film?.genres),
+            rating : new FormControl(this.film?.rating)
         })
         this.form.valueChanges.subscribe(x => {
             console.log(x.title);
@@ -48,14 +50,14 @@ export class EditFilm {
         
     }
 
-    // funzione chiamata al submit del form sul button type=submit
     submitForm(){
-
-        // controllo se il form è valido
+        
         if(this.form?.valid) {
-            //chiamo update e gli passo i dati del form
-             this._filmService.update(this.form?.value);
-             this._location.back()
+            
+             this._filmService.update(this.form?.value).subscribe((putFilm : films) => {
+                
+                this._location.back()
+             });
 
             }
         }
