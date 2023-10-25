@@ -1,54 +1,51 @@
 import { Injectable } from '@angular/core';
-import { celebrities } from '../Films/interfaces/celebrity.interface';
-import { Subject } from 'rxjs';
+import { Celebrities } from '../shared/interfaces/celebrity.interface';
+import { Observable, Subject, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CelebrityService {
-  celebrities: celebrities[] = [
-    {
-      id: '1',
-      primary_name: 'Taylor swift',
-      birthDate: 2011,
-    },
-    {
-      id: '2',
-      primary_name: 'Adam Sandler',
-      birthDate: 1974,
-      death_year: 2023,
-    },
-    {
-      id: '3',
-      primary_name: 'Jeezy',
-      birthDate: 2011,
-    },
-    {
-      id: '4',
-      primary_name: 'Gwen Stefani',
-      birthDate: 2011,
-    },
-  ];
+  private _baseUrl = '';
+  celebrities: Celebrities[] = [];
 
-  private _celebrities$ = new Subject<celebrities[]>();
-
-  celebObs$ = this._celebrities$.asObservable();
-
-  getList(): void {
-    this._celebrities$.next(this.celebrities);
+  constructor(
+    private readonly _http: HttpClient
+    ){
+      this._baseUrl = environment.baseUrl;
   }
 
-  getById(id: any): celebrities | undefined {
-    const celebrity: celebrities | undefined = this.celebrities.find(
-      (celebrity: celebrities) => celebrity.id === id
+  private _celebrities$ = new Subject<Celebrities[]>();
+  celebObs$ = this._celebrities$.asObservable();
+
+
+
+  getList(): Observable<Celebrities[]> {
+
+    return this._http.get<Celebrities[]>(`${this._baseUrl}/celebrities?order_by=id&page=0&size=25`)
+      .pipe(
+        map((dataObj : any) => {
+          return dataObj.celebrities
+        })
+      )
+
+
+    /* this._celebrities$.next(this.celebrities); */
+  }
+
+  getById(id: any): Celebrities | undefined {
+    const celebrity: Celebrities | undefined = this.celebrities.find(
+      (celebrity: Celebrities) => celebrity.id === id
     );
     return celebrity;
   }
 
   // aggiornare i valori del form in ingresso
-  update(formValues: celebrities): void {
+  update(formValues: Celebrities): void {
     const celebrityIndex = this.celebrities.findIndex(
-      (celebrity: celebrities) => celebrity.id === formValues.id
+      (celebrity: Celebrities) => celebrity.id === formValues.id
     );
     if (celebrityIndex !== -1) {
       this.celebrities[celebrityIndex] = formValues;
@@ -65,7 +62,7 @@ export class CelebrityService {
     }
   }
 
-  addCelebrity(celebrity : celebrities){
+  addCelebrity(celebrity : Celebrities){
     celebrity.id = (this.celebrities.length + 1).toString()
     this.celebrities.push(celebrity)
     this._celebrities$.next(this.celebrities)

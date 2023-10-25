@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { celebrities } from '../Films/interfaces/celebrity.interface';
+import { Celebrities } from '../shared/interfaces/celebrity.interface';
 import { CelebrityService } from '../services/celebrity.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CelebritiesPage {
 
-  celebrityList : celebrities [] = [];
+  celebrityList : Celebrities [] = [];
 
 
   constructor(
@@ -18,18 +18,28 @@ export class CelebritiesPage {
               private readonly _route : Router,
               private route : ActivatedRoute
   ) {
-    this._celebrityService.celebObs$.subscribe((celebrities : celebrities[]) => {
-      this.celebrityList = celebrities.map((values : celebrities) => {
+  }
+  
+  private _getList(){
+    this._celebrityService.getList().subscribe((celebrities : Celebrities[]) => {
+      this.celebrityList = celebrities.map((values : Celebrities) => {
+                
         return {
           id : values.id,
-          primary_name : values.primary_name,
+          name : values.name,
           birthDate : values.birthDate,
           deathYear : values.death_year,
+          films : values.films
         }
       })
     });
-    this._celebrityService.getList()
+    
   }
+
+  ionViewWillEnter(){
+    this._getList()
+  }
+
 
   onSelect(id : any){
     this._route.navigate(["details", id], {relativeTo:this.route})

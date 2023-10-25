@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FilmService } from '../services/film.service';
-import { Film } from './interfaces/film.interfaces';
+import { Film } from '../shared/interfaces/film.interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

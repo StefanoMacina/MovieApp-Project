@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { celebrities } from "src/app/Films/interfaces/celebrity.interface";
+import { Celebrities } from "src/app/shared/interfaces/celebrity.interface";
 import { CelebrityService } from "src/app/services/celebrity.service";
 
 @Component({
@@ -10,7 +10,7 @@ import { CelebrityService } from "src/app/services/celebrity.service";
 })
 export class CelebrityDetails {
     CelebrityId : string | undefined
-    celebrity : celebrities | undefined
+    celebrity : Celebrities | undefined
 
     constructor(
         private _route : ActivatedRoute,

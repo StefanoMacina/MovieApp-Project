@@ -2,7 +2,7 @@ import { Location } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { FilmService } from "src/app/services/film.service";
-import { Film } from "../../interfaces/film.interfaces";
+import { Film } from "../../../shared/interfaces/film.interfaces";
 
 @Component({
     selector : 'add-film',

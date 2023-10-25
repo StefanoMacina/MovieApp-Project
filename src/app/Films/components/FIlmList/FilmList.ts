@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Film } from "../../interfaces/film.interfaces";
+import { Film } from "../../../shared/interfaces/film.interfaces";
 import { FilmService } from "src/app/services/film.service";
 
 @Component({

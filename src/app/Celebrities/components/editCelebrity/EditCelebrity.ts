@@ -2,7 +2,7 @@ import { Location } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { celebrities } from "src/app/Films/interfaces/celebrity.interface";
+import { Celebrities } from "src/app/shared/interfaces/celebrity.interface";
 import { CelebrityService } from "src/app/services/celebrity.service";
 
 @Component({
@@ -13,7 +13,7 @@ import { CelebrityService } from "src/app/services/celebrity.service";
 export class EditCelebrity{
 
     celebrityId : string | undefined;
-    celebrity : celebrities | undefined;
+    celebrity : Celebrities | undefined;
     form : FormGroup | undefined
 
     constructor(
@@ -32,7 +32,7 @@ export class EditCelebrity{
     private _setForm(){
         this.form = new FormGroup({
             id : new FormControl(this.celebrity?.id),
-            primary_name: new FormControl(this.celebrity?.primary_name,),
+            primary_name: new FormControl(this.celebrity?.name,),
             birthDate: new FormControl(this.celebrity?.birthDate),
             deathyear : new FormControl(this.celebrity?.death_year)
         })

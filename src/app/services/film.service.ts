@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FilmForm, Film } from '../Films/interfaces/film.interfaces';
+import { FilmForm, Film } from '../shared/interfaces/film.interfaces';
 import { Observable, Subject, map, pluck } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
