@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FilmForm, Film } from '../shared/interfaces/film.interfaces';
-import { Observable, Subject, map, pluck } from 'rxjs';
+import { FilmForm, Film, ResponseDto } from '../shared/interfaces/film.interfaces';
+import { Observable, Subject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -24,10 +24,19 @@ export class FilmService {
       .get<Film[]>(`${this._baseUrl}/movies?order_by=id&page=0&size=25`)
       .pipe(
         map((film: any) => {
+        //console.log(film.movies)
           return film.movies;
         })
       );
   }
+
+
+ /*  getByTitle(title : string): Observable<ResponseDto<Film[]>> {
+    return this._http.get<ResponseDto<Film>>(`${this._baseUrl}/movies?title=${title}`)
+    .pipe(
+      map(({movies}) => movies)
+    )
+  } */
 
   getById(id: string): Observable<Film> {
     return this._http.get<Film>(`${this._baseUrl}/movies/${id}`);

@@ -1,39 +1,28 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Film } from "../../../shared/interfaces/film.interfaces";
-import { FilmService } from "src/app/services/film.service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Film } from '../../../shared/interfaces/film.interfaces';
 
 @Component({
-    selector : 'film-list',
-    templateUrl : './FilmList.html',
-    styleUrls : ['./FilmList.scss']
+  selector: 'film-list',
+  templateUrl: './FilmList.html',
+  styleUrls: ['./FilmList.scss'],
 })
-export class FilmList{
+export class FilmList {
+  
+  @Input() list: Film[] = [];
+  @Output() film = new EventEmitter<string>();
+  @Output() select = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<string>();
 
-   
-    @Input() list : Film [] = [];
-    @Output() film = new EventEmitter<string>();
-    @Output() select = new EventEmitter<string>();
-    @Output() delete = new EventEmitter<string>();
-   
 
-    constructor(private readonly _filmList : FilmService){
-              
-        
-    }
-    
-    selectFilm(id:string){
-        console.log(id);
-        
-        this.film.emit(id)
-    }
+  selectFilm(id: string) {
+    this.film.emit(id);
+  }
 
-    editFilm(id:string){
-        this.select.emit(id)
-    }
+  editFilm(id: string) {
+    this.select.emit(id);
+  }
 
-    deleteFilm(id : string){
-        this.delete.emit(id)
-    }
-    
-    
+  deleteFilm(id: string) {
+    this.delete.emit(id);
+  }
 }

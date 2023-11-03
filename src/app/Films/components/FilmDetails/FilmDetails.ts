@@ -23,7 +23,7 @@ export class FilmDetails {
     this._route.params.subscribe((params) => {
       this.filmId = params['id'];
       if (this.filmId) {
-        // assegno a film ciò che estraggo con getById, e subscribe in modo ASINCRONO
+        
         this._filmService.getById(this.filmId).subscribe((getFilm: Film) => {
           this.film = getFilm;
         });
