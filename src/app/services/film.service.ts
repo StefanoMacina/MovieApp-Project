@@ -31,12 +31,12 @@ export class FilmService {
   }
 
 
- /*  getByTitle(title : string): Observable<ResponseDto<Film[]>> {
+  getByTitle(title : string | null) : Observable<Film[]> {
     return this._http.get<ResponseDto<Film>>(`${this._baseUrl}/movies?title=${title}`)
     .pipe(
-      map(({movies}) => movies)
+      map((movies) => movies.movies)
     )
-  } */
+  }
 
   getById(id: string): Observable<Film> {
     return this._http.get<Film>(`${this._baseUrl}/movies/${id}`);
@@ -52,26 +52,17 @@ export class FilmService {
   deleteById(id: string): Observable<Film> {
     return this._http.delete<Film>(`${this._baseUrl}/movies/${id}`);
 
-    /* const index = this.films.findIndex((film) => film.id == id);
-    if (index !== -1) {
-      this.films.splice(index, 1);
-      this._film$.next(this.films);
-    } */
+    
   }
 
-  // Prendo i dati del form 'formValues' e li converto con formToDto per rimapparli in un interfaccia
-  // compatibile con il backend, LE INTERFACCE SONO DIVERSE
   addFilm(formValues: FilmForm): Observable<Film> {
     const movieDto: Film = this.formToDto(formValues);
 
     return this._http.post<Film>(`${this._baseUrl}/movies`, movieDto);
 
-    /* film.id = (this.films.length + 1).toString();
-    this.films.push(film);
-    this._film$.next(this.films); */
+    
   }
 
-  // rimappare i dati del form per passarli al backend in formato corretto
   formToDto(toDto: FilmForm): Film {
     return {
       id: toDto.id,

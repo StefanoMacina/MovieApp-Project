@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Celebrities } from 'src/app/shared/interfaces/celebrity.interface';
+import { Celebrity } from 'src/app/shared/interfaces/celebrity.interface';
 import { CelebrityService } from 'src/app/services/celebrity.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { CelebrityService } from 'src/app/services/celebrity.service';
 })
 export class EditCelebrity {
   celebrityId!: string;
-  celebrity: Celebrities | undefined;
+  celebrity: Celebrity | undefined;
   form: FormGroup | undefined;
 
   constructor(
@@ -24,7 +24,7 @@ export class EditCelebrity {
       this.celebrityId = params['id'];
       this._celebrityService
         .getById(this.celebrityId)
-        .subscribe((getCelebrity: Celebrities) => {
+        .subscribe((getCelebrity: Celebrity) => {
           this.celebrity = getCelebrity;
           this._setForm();
         });

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Celebrities } from "src/app/shared/interfaces/celebrity.interface";
+import { Celebrity } from "src/app/shared/interfaces/celebrity.interface";
 import { CelebrityService } from "src/app/services/celebrity.service";
 
 @Component({
@@ -10,7 +10,7 @@ import { CelebrityService } from "src/app/services/celebrity.service";
 })
 export class CelebrityDetails {
     CelebrityId! : string 
-    celebrity : Celebrities | undefined
+    celebrity : Celebrity | undefined
 
     constructor(
         private _route : ActivatedRoute,
@@ -21,7 +21,7 @@ export class CelebrityDetails {
             this.CelebrityId = params['id'];
             if(this.CelebrityId) {
                 // assegno il valore in base all'id
-               this._celebrityService.getById(this.CelebrityId).subscribe((getCelebrity : Celebrities) => {
+               this._celebrityService.getById(this.CelebrityId).subscribe((getCelebrity : Celebrity) => {
                 this.celebrity = getCelebrity
                 console.log(getCelebrity);
                 

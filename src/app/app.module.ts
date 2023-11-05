@@ -8,9 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilmsPageModule } from './Films/films.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomDirectiveDirective } from './custom-directive.directive';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CustomDirectiveDirective],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FilmsPageModule],
   providers: [
     

@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RangeCustomEvent } from '@ionic/angular';
-import { BehaviorSubject, debounceTime, filter, map } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  debounceTime,
+  filter,
+  map,
+  switchMap,
+} from 'rxjs';
 import { FilmService } from '../services/film.service';
 import { Film } from '../shared/interfaces/film.interfaces';
 import { FormControl } from '@angular/forms';
@@ -13,32 +20,28 @@ import { FormControl } from '@angular/forms';
 })
 export class FilmsPage {
   filmsList: Film[] = [];
+  selectedItemRating: number | undefined;
+  selectedMovie$ = new BehaviorSubject<Film | undefined>(undefined);
   ratingRange$ = new BehaviorSubject<number>(0);
-  formField = new FormControl<string>('')
+  formField$ = new BehaviorSubject<string>('');
+  formField = new FormControl<string>('');
+  selectedItemDetail: string = '';
 
-  
   constructor(
     private readonly _filmService: FilmService,
     private readonly _route: Router,
     private route: ActivatedRoute
-    ) {
-      this.formField.valueChanges
+  ) {}
+
+  private _getListByTitle() {
+    this.formField.valueChanges
       .pipe(
-        debounceTime(500),
-        
-      ).subscribe(formInput => {
-
-        if(formInput){
-          // console.log(formInput)
-          this._filmService.getList().pipe(
-            map((films : Film[]) => {
-              const filtered : Film[] = films.filter(film => film.title.toLowerCase().includes(formInput.toLowerCase()))
-              return filtered
-            })
-            )
-          }
-
-      })
+        debounceTime(1000),
+        switchMap((searchText) => {
+          return this._filmService.getByTitle(searchText);
+        })
+      )
+      .subscribe((value) => (this.filmsList = value));
   }
 
   // defining optional parameter with def value of 0 to avoid undefined, defining parameter as number
@@ -46,21 +49,13 @@ export class FilmsPage {
     this._filmService
       .getList()
       .pipe(
-        // filtering films dinamically using a ionic selector
         map((films) =>
           films.filter(
             (film) =>
               film.rating != undefined &&
               film.rating.averageRating >= selectedRatingFilter
           )
-        ),
-        // transforming films avg rating from integer to decimal
-       /*  map((films) => {
-          films.forEach((film) => {
-            film.rating.averageRating = film.rating.averageRating / 10;
-          });
-          return films;
-        }) */
+        )
       )
       .subscribe((films: Film[]) => {
         this.filmsList = films.map(
@@ -79,27 +74,40 @@ export class FilmsPage {
         );
       });
   }
+  // metto in sincronia i due observable con una funzione che restituisce combineLatest dei due observables
+  private getMovieByRating() {
+    combineLatest([this._filmService.getList(), this.ratingRange$]).subscribe(
+      ([films, rating]) => {
+        const filteredFilms = films.filter(
+          (film) =>
+            film.rating != undefined && film.rating.averageRating >= rating
+        );
+
+        this.filmsList = filteredFilms.map(
+          ({ id, title, year, genres, rating, country, cast, runningTime }) => {
+            return {
+              id,
+              title,
+              year,
+              genres,
+              rating,
+              country,
+              cast,
+              runningTime,
+            };
+          }
+        );
+      }
+    );
+  }
 
   onIonChange(ev: Event) {
     this.ratingRange$.next(Number((ev as RangeCustomEvent).detail.value));
-    /* const value = (ev as RangeCustomEvent).detail.value;
-    this._getFilmList(+value); */
   }
 
   ionViewWillEnter() {
-    this._getFilmList();
-    this.ratingRange$.subscribe((val) => {
-      this._getFilmList(val);
-    });
-
-    // metto in sincronia i due observable con combineLatest
-    // combineLatest({
-    //   movieList : this._filmService.getList(),
-    //   rating : this.ratingRange$
-    // }).subscribe(({movieList, rating}) => {
-    //   console.log(movieList, rating);
-
-    // })
+    this.getMovieByRating();
+    this._getListByTitle();
   }
 
   onSelect(id: string) {

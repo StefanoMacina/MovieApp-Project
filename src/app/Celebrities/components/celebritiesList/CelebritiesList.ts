@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Celebrities } from "src/app/shared/interfaces/celebrity.interface";
+import { Celebrity } from "src/app/shared/interfaces/celebrity.interface";
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Celebrities } from "src/app/shared/interfaces/celebrity.interface";
 })
 export class CelebritiesList{
 
-    @Input() list : Celebrities [] = [];
+    @Input() list : Celebrity [] = [];
     @Output() celebrity = new EventEmitter<string>();
     @Output() select = new EventEmitter<string>()
     @Output() delete = new EventEmitter<string>();

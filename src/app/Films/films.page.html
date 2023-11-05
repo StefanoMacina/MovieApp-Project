@@ -38,3 +38,14 @@
     (delete)="onDelete($event)"
   ></film-list>
 </ion-content>
+
+<!-- <ion-footer *ngFor=" let movie of filmsList" >
+  <ion-toolbar (click)="detail(filmList.id)">
+    <ion-title class="footerTitle">Details</ion-title>
+    <p [innerHTML]=" selectedItemDetails"></p>
+      <app-rating 
+        *ngIf="selectedItemRating"
+        [Rating]="selectedItemRating"
+      ></app-rating>
+  </ion-toolbar>
+</ion-footer> -->

@@ -1,12 +1,12 @@
-export interface Celebrities {
+export interface Celebrity {
     id : string,
     name : string,
     birthDate : number,
     death_year?: number
-    films :  CelebritiesFilms[]
+    films :  MovieCelebrity[]
 }
 
-export interface CelebritiesFilms {
+export interface MovieCelebrity {
     celebrityName : string,
     celebrityId : string,
     movieTitle : string

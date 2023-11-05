@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Celebrities } from 'src/app/shared/interfaces/celebrity.interface';
+import { Celebrity } from 'src/app/shared/interfaces/celebrity.interface';
 import { CelebrityService } from 'src/app/services/celebrity.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CelebrityService } from 'src/app/services/celebrity.service';
 })
 export class addCelebrity {
   form: FormGroup | undefined;
-  celebrity: Celebrities | undefined;
+  celebrity: Celebrity | undefined;
 
   constructor(
     private readonly _celebrityService: CelebrityService,

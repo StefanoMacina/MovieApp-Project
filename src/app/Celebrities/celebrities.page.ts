@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Celebrities } from '../shared/interfaces/celebrity.interface';
+import { Celebrity } from '../shared/interfaces/celebrity.interface';
 import { CelebrityService } from '../services/celebrity.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CelebritiesPage {
 
-  celebrityList : Celebrities [] = [];
+  celebrityList : Celebrity [] = [];
 
 
   constructor(
@@ -20,8 +20,8 @@ export class CelebritiesPage {
   ) {}
   
   private _getList(){
-    this._celebrityService.getList().subscribe((celebrities : Celebrities[]) => {
-      this.celebrityList = celebrities.map((values : Celebrities) => {
+    this._celebrityService.getList().subscribe((celebrities : Celebrity[]) => {
+      this.celebrityList = celebrities.map((values : Celebrity) => {
                 
         return {
           id : values.id,
