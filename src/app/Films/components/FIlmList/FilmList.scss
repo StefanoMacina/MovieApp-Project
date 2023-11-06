@@ -1,5 +1,5 @@
 #card {
-  height: 70%;
+  height: 60%;
   overflow-y: auto;
   padding: 1rem;
   border: none;
@@ -41,4 +41,15 @@
   position: absolute;
   top: 0;
   border: none;
+}
+
+#film-details-container{
+  display: flex;
+justify-content: space-between;
+  width: 100%;
+}
+
+#title-year{
+  display: flex;
+  flex-direction: column;
 }

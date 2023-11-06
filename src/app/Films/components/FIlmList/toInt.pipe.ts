@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class ToIntegerPipe implements PipeTransform{
     transform( val : number){
-        return val.toFixed(2)
+        return( val/2).toFixed(2)
     }
 }

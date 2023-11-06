@@ -1,7 +1,17 @@
-#toolbar-title{
-    text-align: center;
+ion-title {
+  text-align: center;
 }
 
-ion-progress-bar{
-    display: none;
+ion-progress-bar {
+  display: none;
+}
+
+ion-range{
+    max-width: 90%;
+    margin: 0.5rem auto;
+}
+
+ion-input{
+  max-width: 80%;
+  margin: 0 auto;
 }

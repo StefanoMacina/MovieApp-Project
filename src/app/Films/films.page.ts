@@ -5,7 +5,6 @@ import {
   BehaviorSubject,
   combineLatest,
   debounceTime,
-  filter,
   map,
   switchMap,
 } from 'rxjs';
@@ -22,7 +21,7 @@ export class FilmsPage {
   filmsList: Film[] = [];
   ratingRange$ = new BehaviorSubject<number>(0);
   formField = new FormControl<string>('');
-  // selectedItemRating: number | undefined;
+  // selectedFilmRating: number | undefined;
   // selectedMovie$ = new BehaviorSubject<Film | undefined>(undefined);
   // formField$ = new BehaviorSubject<string>('');
   // selectedItemDetail: string = '';

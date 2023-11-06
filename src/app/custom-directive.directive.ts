@@ -10,15 +10,15 @@ export class CustomDirective {
   
   color = 'brown';
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef<HTMLHeadingElement>) {
   }
   
   ngOnInit(){
     // controlla se applicare la direttiva in base al valore restituito da appCustomDirective (check -> FilmList.html)
-    this.appCustomDirective ? this.changeColor() : false
+    this.appCustomDirective ? this.changeColor() : this.el.nativeElement.style.color = 'inherit'
   }
 
-  changeColor(){
+    changeColor(){
     this.el.nativeElement.style.color= this.color
   }
 

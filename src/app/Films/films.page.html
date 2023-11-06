@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title id="toolbar-title"> Films </ion-title>
+    <ion-title> Films </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onAdd()">
         <ion-icon name="add"></ion-icon>
@@ -16,20 +16,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
-    <ion-range
-      aria-label="Range with ticks"
-      [ticks]="false"
-      [snaps]="true"
-      [min]="0"
-      [max]="10"
-      [pin]="true"
-      (ionChange)="onIonChange($event)"
-    ></ion-range>
-  </ion-item>
+  <ion-range
+    [ticks]="false"
+    [snaps]="true"
+    [min]="0"
+    [max]="10"
+    [pin]="true"
+    (ionChange)="onIonChange($event)"
+  >
+    <ion-icon slot="start" name="star-outline" color="medium"></ion-icon>
+    <ion-icon slot="end" name="star-sharp" color="medium"></ion-icon>
+  </ion-range>
 
   <ion-input
-    label="search film"
+    label=" search film by title"
     labelPlacement="floating"
     fill="outline"
     [counter]="true"

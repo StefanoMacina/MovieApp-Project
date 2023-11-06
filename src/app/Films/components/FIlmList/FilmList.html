@@ -6,13 +6,21 @@
           <ion-item (click)="selectFilm(film.id)">
             <ion-label
               ><div id="ion-label">
-                <div>
+                <div id="film-details-container">
                   <p [appCustomDirective]="film.rating.averageRating < 5">
                     {{film.title}}
                   </p>
-                  ({{film.rating.averageRating !== undefined ?
-                  (film.rating.averageRating | toInt) : ''}}) {{film.year}}
-                  {{film.cast}}
+                  <div id="title-year">
+                    <p>{{(film.rating.averageRating | toInt) }} / 5</p>
+                    <p>{{film.year}}</p>
+                  </div>
+                  <p *ngFor="let actor of film.cast">
+                    <ng-container
+                      *ngIf="actor.category === 'actor' || actor.category=== 'actress'"
+                    >
+                      {{actor.celebrityName}}
+                    </ng-container>
+                  </p>
                 </div>
               </div></ion-label
             >
