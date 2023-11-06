@@ -2,9 +2,6 @@ ion-title {
   text-align: center;
 }
 
-ion-progress-bar {
-  display: none;
-}
 
 ion-range{
     max-width: 90%;
@@ -14,4 +11,21 @@ ion-range{
 ion-input{
   max-width: 80%;
   margin: 0 auto;
+  color: rgba(255, 255, 255, 0.264);
+}
+
+/* #label{
+  position : absolute
+} */
+
+#rating-range-container{
+  position: relative;
+ p{
+  color: white;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+ }
+  
 }

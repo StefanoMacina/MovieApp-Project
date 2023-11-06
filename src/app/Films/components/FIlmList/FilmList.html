@@ -7,11 +7,11 @@
             <ion-label
               ><div id="ion-label">
                 <div id="film-details-container">
-                  <p [appCustomDirective]="film.rating.averageRating < 5">
+                  <h2 [appCustomDirective]="film.rating.averageRating < 5">
                     {{film.title}}
-                  </p>
+                  </h2>
                   <div id="title-year">
-                    <p>{{(film.rating.averageRating | toInt) }} / 5</p>
+                    <p><i>{{(film.rating.averageRating | toInt) }} / 5</i></p>
                     <p>{{film.year}}</p>
                   </div>
                   <p *ngFor="let actor of film.cast">

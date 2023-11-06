@@ -16,26 +16,30 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-range
+  <div id="rating-range-container">
+    <p id="label">Filter movie by rating</p>
+    <ion-range
+    labelPlacement="fixed"
     [ticks]="false"
     [snaps]="true"
     [min]="0"
     [max]="10"
     [pin]="true"
     (ionChange)="onIonChange($event)"
-  >
+    >
     <ion-icon slot="start" name="star-outline" color="medium"></ion-icon>
     <ion-icon slot="end" name="star-sharp" color="medium"></ion-icon>
   </ion-range>
-
+</div>
+  
   <ion-input
-    label=" search film by title"
+    label=" Search film by title"
     labelPlacement="floating"
     fill="outline"
     [counter]="true"
     maxlength="35"
     [formControl]="formField"
-    placeholder="type here..."
+    placeholder="The silent forced, Spiderman, Blazin'"
     [clearInput]="true"
     [formControl]="formField"
   ></ion-input>
