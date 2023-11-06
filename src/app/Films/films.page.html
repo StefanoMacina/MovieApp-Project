@@ -15,23 +15,30 @@
       <ion-title size="large">Films</ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-item>
     <ion-range
-    aria-label="Range with ticks"
-    [ticks]="false"
-    [snaps]="true"
-    [min]="0"
-    [max]="10"
-    [pin]="true"
-    (ionChange)="onIonChange($event)"
+      aria-label="Range with ticks"
+      [ticks]="false"
+      [snaps]="true"
+      [min]="0"
+      [max]="10"
+      [pin]="true"
+      (ionChange)="onIonChange($event)"
     ></ion-range>
   </ion-item>
 
-  <ion-item>
-    <ion-input label="search film" labelPlacement="floating" [formControl]="formField" placeholder="type here..."></ion-input>
-  </ion-item>
-  
+  <ion-input
+    label="search film"
+    labelPlacement="floating"
+    fill="outline"
+    [counter]="true"
+    maxlength="35"
+    [formControl]="formField"
+    placeholder="type here..."
+    [clearInput]="true"
+    [formControl]="formField"
+  ></ion-input>
 
   <film-list
     *ngIf="filmsList"
@@ -41,14 +48,3 @@
     (delete)="onDelete($event)"
   ></film-list>
 </ion-content>
-
-<!-- <ion-footer *ngFor=" let movie of filmsList" >
-  <ion-toolbar (click)="detail(filmList.id)">
-    <ion-title class="footerTitle">Details</ion-title>
-    <p [innerHTML]=" selectedItemDetails"></p>
-      <app-rating 
-        *ngIf="selectedItemRating"
-        [Rating]="selectedItemRating"
-      ></app-rating>
-  </ion-toolbar>
-</ion-footer> -->

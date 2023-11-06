@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FilmsPage } from './films.page';
-
-import { HeaderComponent } from '../shared/header/header';
 import { EditFilm } from './components/EditFIlm/EditFilm';
 import { FilmList } from './components/FIlmList/FilmList';
 import { ToIntegerPipe } from './components/FIlmList/toInt.pipe';
@@ -34,7 +32,6 @@ import { CustomDirective } from '../custom-directive.directive';
     FilmDetails,
     EditFilm,
     addFilm,
-    HeaderComponent,
     ToIntegerPipe,
     OrderByPipe,
     

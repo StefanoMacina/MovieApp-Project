@@ -18,7 +18,6 @@ export class CustomDirective {
     this.appCustomDirective ? this.changeColor() : false
   }
 
-  
   changeColor(){
     this.el.nativeElement.style.color= this.color
   }
