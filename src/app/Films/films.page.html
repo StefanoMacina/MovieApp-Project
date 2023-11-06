@@ -7,6 +7,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-searchbar
+    [formControl]="formField"
+    placeholder="The silent forced, Spiderman, Blazin'"
+  ></ion-searchbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -17,7 +21,7 @@
   </ion-header>
 
   <div id="rating-range-container">
-    <p id="label">Filter movie by rating</p>
+    <p id="label">Filter movies by rating</p>
     <ion-range
       labelPlacement="fixed"
       [ticks]="false"
@@ -32,44 +36,42 @@
     </ion-range>
   </div>
 
-  <ion-input
-    label=" Search film by title"
-    labelPlacement="floating"
-    fill="outline"
-    [counter]="true"
-    maxlength="35"
-    [formControl]="formField"
-    placeholder="The silent forced, Spiderman, Blazin'"
-    [clearInput]="true"
-    [formControl]="formField"
-  ></ion-input>
-
   <film-list
-    *ngIf="filmsList"
+    *ngIf="filmsList.length > 0 ; else noFilms"
     [list]="filmsList"
     (film)="loadMovie($event)"
     (select)="onEdit($event)"
     (delete)="onDelete($event)"
   ></film-list>
+  <ng-template #noFilms>
+    <h1 *ngIf="searchedText" style="position: absolute; top: 50%; padding: 2rem; text-align: center;">There are no films for {{searchedText}}</h1>
+    <h1 *ngIf="!searchedText" style=" position: absolute; top: 50%; padding: 2rem; text-align: center;">There are no films for specified rating </h1>
+  </ng-template>
 
-  <ion-footer *ngIf="selectedMovie" style="padding: 1rem;">
-    <ion-button fill="outline" size="small" (click)="closeFooter()" style="position: absolute; right: 1rem; top: 0; " >
+  <ion-footer *ngIf="selectedMovie" style="padding: 1rem">
+    <ion-button
+      fill="outline"
+      size="small"
+      (click)="closeFooter()"
+      style="position: absolute; right: 1rem; top: 0"
+    >
       close
       <ion-icon name="close-outline"></ion-icon>
     </ion-button>
-    <h3>{{selectedMovie.title}} </h3>
+    <h3>{{selectedMovie.title}}</h3>
     <p>{{selectedMovie.year}}</p>
     <app-range-wrapper
-    *ngIf="selectedMovie.rating"
-    [rangeValue]="selectedMovie.rating.averageRating"
+      *ngIf="selectedMovie.rating"
+      [rangeValue]="selectedMovie.rating.averageRating"
     ></app-range-wrapper>
-    <div style="display: flex; justify-content: center;">
-      <ion-button (click)="onSelect(selectedMovie.id)" style="margin-top: 1rem; width: 100%; ">
+    <div style="display: flex; justify-content: center">
+      <ion-button
+        (click)="onSelect(selectedMovie.id)"
+        style="margin-top: 1rem; width: 100%"
+      >
         GO TO DETAILS
         <ion-icon name="arrow-redo" slot="end"></ion-icon>
       </ion-button>
-      
     </div>
-    
   </ion-footer>
 </ion-content>

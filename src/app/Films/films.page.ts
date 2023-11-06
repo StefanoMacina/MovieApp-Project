@@ -24,10 +24,8 @@ export class FilmsPage {
   selectedId$ = new BehaviorSubject<string>('');
   unfilteredMovies: Film[] = [];
   selectedMovie: Film | undefined;
-  // selectedFilmRating: number | undefined;
-  // selectedMovie$ = new BehaviorSubject<Film | undefined>(undefined);
-  // formField$ = new BehaviorSubject<string>('');
-  // selectedItemDetail: string = '';
+  searchedText : string | null | undefined
+  
 
   constructor(
     private readonly _filmService: FilmService,
@@ -44,11 +42,12 @@ export class FilmsPage {
     this.selectedMovie = undefined
   }
 
-  private _getListByTitle() {
+  private _getFilmByTitle() {
     this.formField.valueChanges
       .pipe(
         debounceTime(1000),
         switchMap((searchText) => {
+          this.searchedText = searchText
           return this._filmService.getByTitle(searchText);
         })
       )
@@ -56,7 +55,7 @@ export class FilmsPage {
   }
 
   // defining optional parameter with def value of 0 to avoid undefined, defining parameter as number
-  private _getFilmList(selectedRatingFilter = 0) {
+  private _getFilmsByRating(selectedRatingFilter = 0) {
     this._filmService
       .getList()
       .pipe(
@@ -123,7 +122,7 @@ export class FilmsPage {
 
   ionViewWillEnter() {
     this.getMovieCombined();
-    this._getListByTitle();
+    this._getFilmByTitle();
   }
 
   /**
@@ -144,7 +143,7 @@ export class FilmsPage {
 
   onDelete(id: string) {
     this._filmService.deleteById(id).subscribe(() => {
-      this._getFilmList();
+      this._getFilmsByRating();
     });
   }
 

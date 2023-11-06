@@ -16,10 +16,13 @@
                   </div>
                   <p *ngFor="let actor of film.cast">
                     <ng-container
-                      *ngIf="actor.category === 'actor' || actor.category=== 'actress'"
+                      *ngIf="actor.category === 'actor' || actor.category=== 'actress' ; else noActors"
                     >
                       {{actor.celebrityName}}
                     </ng-container>
+                    <ng-template #noActors>
+                      there is no actors
+                    </ng-template>
                   </p>
                 </div>
               </div></ion-label

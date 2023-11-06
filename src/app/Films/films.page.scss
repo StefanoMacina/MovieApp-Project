@@ -2,37 +2,28 @@ ion-title {
   text-align: center;
 }
 
-
-ion-range{
-    max-width: 90%;
-    margin: 0.5rem auto;
+ion-range {
+  max-width: 90%;
+  margin: 0.5rem auto;
 }
 
-ion-input{
-  max-width: 80%;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.264);
+ion-searchbar {
+  background-color: rgba(255, 255, 255, 0.123);
 }
 
-/* #label{
-  position : absolute
-} */
-
-#rating-range-container{
+#rating-range-container {
   position: relative;
- p{
-  color: white;
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
- }
-  
+  p {
+    color: white;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
-ion-footer{
-  position : absolute;
-  bottom : 5rem;
+ion-footer {
+  position: absolute;
+  bottom: 5rem;
   background-color: #040a5f;
-
 }
