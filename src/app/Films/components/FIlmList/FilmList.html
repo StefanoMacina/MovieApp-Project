@@ -6,25 +6,27 @@
           <ion-item (click)="selectFilm(film.id)">
             <ion-label
               ><div id="ion-label">
-                <p>
-                  {{film.title}} ({{film.rating.averageRating !== undefined ?
+                <div>
+                  <p [appCustomDirective]="film.rating.averageRating < 5">
+                    {{film.title}}
+                  </p>
+                  ({{film.rating.averageRating !== undefined ?
                   (film.rating.averageRating | toInt) : ''}}) {{film.year}}
                   {{film.cast}}
-                </p>
+                </div>
               </div></ion-label
             >
           </ion-item>
 
-          
           <ion-item-options>
             <ion-item-option (click)="editFilm(film.id)">
               <ion-icon slot="icon-only" name="create-outline"></ion-icon>
             </ion-item-option>
             <ion-item-option (click)="deleteFilm(film.id)">
               <ion-icon
-              color="danger"
-              slot="icon-only"
-              name="close-outline"
+                color="danger"
+                slot="icon-only"
+                name="close-outline"
               ></ion-icon>
             </ion-item-option>
           </ion-item-options>
@@ -34,9 +36,8 @@
           *ngIf="film.rating.averageRating"
           [rangeValue]="film.rating.averageRating"
         ></app-range-wrapper>
-        
       </ion-card>
-      <p id="year-label"><small appCustomDirective >{{film.genres}}</small></p>
+      <p id="genres-label"><small>{{film.genres}}</small></p>
     </div>
   </ion-list>
 </div>

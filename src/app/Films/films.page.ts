@@ -20,12 +20,12 @@ import { FormControl } from '@angular/forms';
 })
 export class FilmsPage {
   filmsList: Film[] = [];
-  selectedItemRating: number | undefined;
-  selectedMovie$ = new BehaviorSubject<Film | undefined>(undefined);
   ratingRange$ = new BehaviorSubject<number>(0);
-  formField$ = new BehaviorSubject<string>('');
   formField = new FormControl<string>('');
-  selectedItemDetail: string = '';
+  // selectedItemRating: number | undefined;
+  // selectedMovie$ = new BehaviorSubject<Film | undefined>(undefined);
+  // formField$ = new BehaviorSubject<string>('');
+  // selectedItemDetail: string = '';
 
   constructor(
     private readonly _filmService: FilmService,
@@ -74,7 +74,9 @@ export class FilmsPage {
         );
       });
   }
-  // metto in sincronia i due observable con una funzione che restituisce combineLatest dei due observables
+  
+  // metto in sincronia i due observable con  combineLatest su getList e ratingRange,
+  // combina gli ultimi valori emessi da ratingRange e dalla getList del service
   private getMovieByRating() {
     combineLatest([this._filmService.getList(), this.ratingRange$]).subscribe(
       ([films, rating]) => {

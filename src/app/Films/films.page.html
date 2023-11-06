@@ -15,8 +15,9 @@
       <ion-title size="large">Films</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ion-range
+  
+  <ion-item>
+    <ion-range
     aria-label="Range with ticks"
     [ticks]="false"
     [snaps]="true"
@@ -24,11 +25,13 @@
     [max]="10"
     [pin]="true"
     (ionChange)="onIonChange($event)"
-  ></ion-range>
+    ></ion-range>
+  </ion-item>
 
-  <form class="form">
-    <ion-input id="title" type="text" [formControl]="formField" placeholder="search film..."></ion-input>
-  </form>
+  <ion-item>
+    <ion-input label="search film" labelPlacement="floating" [formControl]="formField" placeholder="type here..."></ion-input>
+  </ion-item>
+  
 
   <film-list
     *ngIf="filmsList"

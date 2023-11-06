@@ -13,6 +13,7 @@ import { addFilm } from './components/addFilm/addFilm';
 import { FilmsPageRoutingModule } from './films-routing.module';
 import { OrderByPipe } from './components/FIlmList/sortBy.pipe';
 import { RangeWrapperModule } from '../shared/range-wrapper/rangeBar.module';
+import { CustomDirective } from '../custom-directive.directive';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { RangeWrapperModule } from '../shared/range-wrapper/rangeBar.module';
     
   ],
   declarations: [
+    CustomDirective,
     FilmsPage,
     FilmList,
     FilmDetails,

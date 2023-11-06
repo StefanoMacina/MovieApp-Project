@@ -8,6 +8,8 @@ import { Film } from '../../../shared/interfaces/film.interfaces';
 })
 export class FilmList {
   
+  
+
   @Input() list: Film[] = [];
   @Output() film = new EventEmitter<string>();
   @Output() select = new EventEmitter<string>();
