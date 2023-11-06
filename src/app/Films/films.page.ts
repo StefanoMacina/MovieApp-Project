@@ -21,6 +21,9 @@ export class FilmsPage {
   filmsList: Film[] = [];
   ratingRange$ = new BehaviorSubject<number>(0);
   formField = new FormControl<string>('');
+  selectedId$ = new BehaviorSubject<string>('');
+  unfilteredMovies: Film[] = [];
+  selectedMovie: Film | undefined;
   // selectedFilmRating: number | undefined;
   // selectedMovie$ = new BehaviorSubject<Film | undefined>(undefined);
   // formField$ = new BehaviorSubject<string>('');
@@ -30,7 +33,16 @@ export class FilmsPage {
     private readonly _filmService: FilmService,
     private readonly _route: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.selectedId$.subscribe((id) => {
+      let movie = this.filmsList.find((movie) => movie.id === id);
+      this.selectedMovie = movie;
+    });
+  }
+
+  closeFooter(){
+    this.selectedMovie = undefined
+  }
 
   private _getListByTitle() {
     this.formField.valueChanges
@@ -73,10 +85,13 @@ export class FilmsPage {
         );
       });
   }
-  
-  // metto in sincronia i due observable con  combineLatest su getList e ratingRange,
-  // combina gli ultimi valori emessi da ratingRange e dalla getList del service
-  private getMovieByRating() {
+
+  /**metto in sincronia i due observable con  combineLatest su getList e ratingRange,
+   combina gli ultimi valori emessi da ratingRange e dalla getList del service per evitare 
+   sovraccarichi di chiamate al backend, l'ultimo valore è il getList(), il valore che viene combinato
+   è quello proveniente dal filtro del film (ratingRange)
+   */
+  private getMovieCombined() {
     combineLatest([this._filmService.getList(), this.ratingRange$]).subscribe(
       ([films, rating]) => {
         const filteredFilms = films.filter(
@@ -107,8 +122,16 @@ export class FilmsPage {
   }
 
   ionViewWillEnter() {
-    this.getMovieByRating();
+    this.getMovieCombined();
     this._getListByTitle();
+  }
+
+  /**
+   *  funzione per far comparire il footer con trigger al click sul film dalla lista,
+   *  la vecchia funzione onSelect per vedere il dettaglio viene lanciata dal button nel footer
+   */
+  loadMovie(id: string): void {
+    this.selectedId$.next(id);
   }
 
   onSelect(id: string) {
