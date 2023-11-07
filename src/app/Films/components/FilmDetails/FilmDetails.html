@@ -1,23 +1,33 @@
-<ion-header >
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    
-    <ion-title slot="start"> Film details </ion-title>
-  </ion-toolbar> 
-</ion-header>
-<ion-content >
 
+    <ion-title slot="start"> Film details </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
   <ion-card *ngIf="film" id="card">
     <ion-card-header>
       <ion-card-title> {{film.title}}</ion-card-title>
-      <ion-card-subtitle>{{film.year}} {{film.genres}} {{film.runningTime}}" </ion-card-subtitle>
+      <ion-card-subtitle
+        >{{film.year}} {{film.genres}} {{film.runningTime}}"
+      </ion-card-subtitle>
     </ion-card-header>
-    
     <ion-card-content>
-      text description for the card content
+      <h2>Casting :</h2>
+      <div *ngFor="let actor of film.cast">
+        <ion-chip style="width: 70%;">
+          <ion-avatar>
+            <img
+              alt="Silhouette of a person's head"
+              src="https://ionicframework.com/docs/img/demos/avatar.svg"
+            />
+          </ion-avatar>
+          <ion-label>{{actor.celebrityName}}</ion-label>
+        </ion-chip>
+      </div>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

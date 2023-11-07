@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from 'src/app/services/film.service';
 import { Film } from '../../../shared/interfaces/film.interfaces';
-import { FilmsPage } from '../../films.page';
-import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'Film-details',

@@ -24,7 +24,7 @@ export class FilmsPage {
   selectedId$ = new BehaviorSubject<string>('');
   unfilteredMovies: Film[] = [];
   selectedMovie: Film | undefined;
-  searchedText : string | null | undefined
+  searchedText : string | null | undefined 
   
 
   constructor(
