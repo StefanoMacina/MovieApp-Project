@@ -18,14 +18,14 @@
     <ion-card-content>
       <h2>Casting :</h2>
       <div *ngFor="let actor of film.cast">
-        <ion-chip style="width: 70%;">
+        <ion-chip style="width: 90%;">
           <ion-avatar>
             <img
               alt="Silhouette of a person's head"
               src="https://ionicframework.com/docs/img/demos/avatar.svg"
             />
           </ion-avatar>
-          <ion-label>{{actor.celebrityName}}</ion-label>
+          <ion-label>{{actor.celebrityName}} <small>{{actor.category}}</small></ion-label>
         </ion-chip>
       </div>
     </ion-card-content>

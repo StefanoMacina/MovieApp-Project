@@ -14,18 +14,16 @@
                     <p><i>{{(film.rating.averageRating | toInt) }} / 5</i></p>
                     <p>{{film.year}}</p>
                   </div>
-                  <p *ngFor="let actor of film.cast">
-                    <ng-container
-                      *ngIf="actor.category === 'actor' || actor.category=== 'actress' ; else noActors"
-                    >
-                      {{actor.celebrityName}}
-                    </ng-container>
-                    <ng-template #noActors>
-                      there is no actors
-                    </ng-template>
-                  </p>
                 </div>
-              </div></ion-label
+              </div>
+              <div  *ngFor="let actor of film.cast">
+                <p id="actor-details"
+                  *ngIf="actor.category === 'actor' || actor.category=== 'actress' "
+                >
+                   {{actor.celebrityName}}
+                </p>
+              </div>
+              </ion-label
             >
           </ion-item>
 

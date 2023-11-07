@@ -36,6 +36,7 @@ export class FilmsPage {
       let movie = this.filmsList.find((movie) => movie.id === id);
       this.selectedMovie = movie;
     });
+    
   }
 
   closeFooter(){
