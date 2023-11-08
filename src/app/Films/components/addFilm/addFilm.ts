@@ -1,47 +1,55 @@
-import { Location } from "@angular/common";
-import { Component } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { FilmService } from "src/app/services/film.service";
-import { Film } from "../../../shared/interfaces/film.interfaces";
+import { Location } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FilmService } from 'src/app/services/film.service';
+import { Film } from '../../../shared/interfaces/film.interfaces';
+import { UniqueTitleValidator } from 'src/app/shared/validators/validator';
+import { Route } from '@angular/router';
 
 @Component({
-    selector : 'add-film',
-    templateUrl : './addFilm.html',
-    styleUrls : ['./addFilm.scss']
+  selector: 'add-film',
+  templateUrl: './addFilm.html',
+  styleUrls: ['./addFilm.scss'],
 })
-export class addFilm{
-    form : FormGroup | undefined;
-    film: Film | undefined; 
+export class addFilm {
+  form: FormGroup;
+  film: Film | undefined;
 
-    constructor(
-        private readonly _filmService: FilmService,
-        private readonly _location:Location
-    ){
-        this._setForm()
-    }
+   ErrorMessages = {
+    required : 'Esiste gia un film con questo titolo',
+    alreadyExist : 'REQUIRED'
+  }
+
+  getErrorMessage(errors : ValidationErrors | null){
     
-
-    private _setForm(){
-        this.form = new FormGroup({
-            id : new FormControl(this.film?.id),
-            title: new FormControl(this.film?.title,),
-            year: new FormControl(this.film?.year),
-            genres :  new FormControl(this.film?.genres),
-            rating : new FormControl(this.film?.rating)
-        })
-        
-    }
+  }
 
 
-    submitForm(){
-        console.log(this.form?.value);
-        if(this.form?.valid) {
-            
-             this._filmService.addFilm(this.form?.value).subscribe(() => {
+  constructor(
+    private readonly _filmService: FilmService,
+    private readonly _location: Location,
+    private readonly _validator: UniqueTitleValidator,
+    private fb: FormBuilder,
+  
+  ) {
+    this.form = this.fb.group({
+      id: [''],
+      title: ['', Validators.required],
+      year: [''],
+      genres: [''],
+      rating: [''],
+    });
+    //aggiungere funzione validatore al campo input di mio interesse
+    this.form.controls['title'].addAsyncValidators(this._validator.validate);
+  }
 
-                 this._location.back()
-             });
+  submitForm() {
+    console.log(this.form?.value);
 
-            }
-        }
+      this._filmService.addFilm(this.form?.value).subscribe(() => {
+        this._location.back();
+      });
+    
+  }
+
 }

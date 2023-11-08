@@ -44,6 +44,7 @@
     (delete)="onDelete($event)"
   ></film-list>
   <ng-template #noFilms>
+    
     <h1 *ngIf="searchedText" style="position: absolute; top: 50%; padding: 2rem; text-align: center;">There are no films for {{searchedText}}</h1>
     <h1 *ngIf="!searchedText" style=" position: absolute; top: 50%; padding: 2rem; text-align: center;">There are no films</h1>
   </ng-template>

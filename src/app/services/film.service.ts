@@ -1,8 +1,12 @@
-import { Injectable } from '@angular/core';
-import { FilmForm, Film, ResponseDto } from '../shared/interfaces/film.interfaces';
-import { Observable, Subject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, Subject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import {
+  Film,
+  FilmForm,
+  ResponseDto,
+} from '../shared/interfaces/film.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +15,8 @@ export class FilmService {
   private _baseUrl = '';
   private _film$ = new Subject<Film[]>();
   private films: Film[] = [];
+
+  
 
   constructor(private readonly _http: HttpClient) {
     this._baseUrl = environment.baseUrl;
@@ -24,18 +30,16 @@ export class FilmService {
       .get<Film[]>(`${this._baseUrl}/movies?order_by=id&page=0&size=25`)
       .pipe(
         map((film: any) => {
-        //console.log(film.movies)
+          //console.log(film.movies)
           return film.movies;
         })
       );
   }
 
-
-  getByTitle(title : string | null) : Observable<Film[]> {
-    return this._http.get<ResponseDto<Film>>(`${this._baseUrl}/movies?title=${title}`)
-    .pipe(
-      map((movies) => movies.movies)
-    )
+  getByTitle(title: string | null): Observable<Film[]> {
+    return this._http
+      .get<ResponseDto<Film>>(`${this._baseUrl}/movies?title=${title}`)
+      .pipe(map((movies) => movies.movies));
   }
 
   getById(id: string): Observable<Film> {
@@ -51,16 +55,12 @@ export class FilmService {
 
   deleteById(id: string): Observable<Film> {
     return this._http.delete<Film>(`${this._baseUrl}/movies/${id}`);
-
-    
   }
 
   addFilm(formValues: FilmForm): Observable<Film> {
     const movieDto: Film = this.formToDto(formValues);
 
     return this._http.post<Film>(`${this._baseUrl}/movies`, movieDto);
-
-    
   }
 
   formToDto(toDto: FilmForm): Film {
