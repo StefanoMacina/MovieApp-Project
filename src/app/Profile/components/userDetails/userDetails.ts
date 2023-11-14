@@ -33,14 +33,17 @@ export class userDetails implements OnInit {
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt,
+      saveToGallery : true
     });
     this.needSpace = false;
     this.imgSrc = image.dataUrl;
+    this._profileService.addProfilePic_Toast('middle')
   };
 
   removeProfilePic() {
     this.imgSrc = this.defaultPic;
     this.needSpace = false;
+    this._profileService.removeProfilePic_Toast('middle')
   }
 
   createSpace() {
@@ -52,4 +55,6 @@ export class userDetails implements OnInit {
       relativeTo: this._activatedRoute,
     });
   }
+
+  
 }

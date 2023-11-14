@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -13,21 +14,24 @@ export class ManageProfileComponent {
     private _fb: FormBuilder,
     private _profileService: ProfileService,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private toastController: ToastController
   ) {}
   profileForm = this._fb.group({
     userName: ['', Validators.required],
     email: ['', Validators.required],
   });
 
-  async updateProfile() {
+   updateProfile() {
     this._profileService.updateSubject(this.profileForm.value);
 
-    this.profileForm.setValue({
-      userName: '',
-      email: '',
-    });
-
-    this._router.navigate(['../'], { relativeTo: this._activatedRoute });
+    
+    setTimeout(() => {
+      this._router.navigate(['../'], { relativeTo: this._activatedRoute });
+    }, 1200);
+    this._profileService.userData_Toast('bottom')
   }
+
+  
+
 }
