@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
@@ -8,10 +9,15 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class userDetails {
 
+    needSpace : boolean
     imgSrc : any
     defaultPic : string = "https://ionicframework.com/docs/img/demos/avatar.svg" 
-    constructor(){
+    constructor(
+      private readonly _router: Router,
+    private _activatedRoute: ActivatedRoute
+    ){
         this.imgSrc = this.defaultPic
+        this.needSpace = false
     }
 
    addProfilePic = async () => {
@@ -28,6 +34,15 @@ export class userDetails {
 
     removeProfilePic(){
         this.imgSrc = this.defaultPic
+    }
+
+    createSpace(){
+      this.needSpace = !this.needSpace
+    }
+
+    onEdit()
+    {
+      this._router.navigate(["manage-profile"], {relativeTo : this._activatedRoute})
     }
 
     
