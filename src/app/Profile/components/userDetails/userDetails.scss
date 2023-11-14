@@ -4,8 +4,6 @@
   transition: margin-bottom 0.3s
 }
 
-
-
 #add-pic-button{
   width: 1.5rem;
   height: 1.5rem;
@@ -21,4 +19,33 @@
   position: relative;
   margin-bottom: 6.5rem;
   transition: margin-bottom 0.3s ;
+}
+
+ion-fab-list{
+  position: absolute;
+  .fab-buttons-container{
+    display: flex;
+    position: relative;
+    left: -100px;
+    p{
+      width: 130px;
+    }
+      ion-fab-button{
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  }
+}
+
+
+#open-modal{
+  position: absolute;
+  width: 100px;
+  font-size: xx-small;
+  right: 20px;
+  top: 30px;
+  color: white;
 }

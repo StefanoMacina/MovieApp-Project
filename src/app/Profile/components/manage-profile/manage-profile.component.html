@@ -1,10 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button><ion-icon name="arrow-back-outline"></ion-icon></ion-back-button>
+  </ion-buttons>
     <ion-title> Manage profile </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<h1>
-  manage-profile works!
-</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+    <ion-list>
+      <ion-item>
+        <ion-input
+          label="Username"
+          labelPlacement="floating"
+          placeholder="username"
+          formControlName="userName"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Email"
+          labelPlacement="floating"
+          placeholder="email"
+          formControlName="email"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" [disabled]="!profileForm.valid">save changes</ion-button>
+  </form>
 </ion-content>
