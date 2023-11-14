@@ -1,31 +1,25 @@
-<header id="user-details-page">
-  
+
   <div id="profile-selector">
     <ion-avatar id="profile-img">
       <img
-        alt="Silhouette of a person's head"
-        src="https://ionicframework.com/docs/img/demos/avatar.svg"
+      alt="Silhouette of a person's head"
+      [src]="imgSrc"
       />
     </ion-avatar>
-    <ion-chip id="add-profile">
-      <div id="add-profile-icon">
-        +
-      </div>
-      <ion-label id="add-profile-text">Add profile</ion-label>
-    </ion-chip>
   </div>
-</header>
-<section id="user-details-body">
-  <ion-list id="user-details">
-    <ion-item>
-      <ion-label>Username : Stefano Macina Leone</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Email : s.macinaleone@gmail.com</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Expiration date : 19/11/2023</ion-label>
-    </ion-item>
-  </ion-list>
-  <ion-button id="manage-btn" fill="outline">Manage profile</ion-button>
-</section>
+  <section id="user-details-body">
+    <ion-list id="user-details">
+      <ion-item>
+        <ion-label>Username : Stefano Macina Leone</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email : s.macinaleone&#64;gmail.com</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expiration date : 19/11/2023</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button id="manage-btn" fill="outline">Manage profile</ion-button>
+    <ion-button (click)="addProfilePic()" fill="outline">Add profile pic</ion-button>
+    <ion-button (click)="removeProfilePic()" color="danger" fill="outline">Remove profile pic</ion-button>
+  </section>
